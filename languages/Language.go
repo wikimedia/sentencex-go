@@ -154,7 +154,6 @@ func (l *Language) Segment(text string) []string {
 	paragraphs := regexp.MustCompile(`\n{2}`).Split(text, -1)
 
 	for pindex, paragraph := range paragraphs {
-		fmt.Printf("P|%s|\n", paragraph)
 		if pindex > 0 {
 			sentences = append(sentences, "\n\n")
 		}
@@ -199,7 +198,7 @@ func (l *Language) Segment(text string) []string {
 			boundaries = append(boundaries, len(paragraph))
 		}
 
-		fmt.Println(boundaries)
+		// fmt.Println(boundaries)
 		for i := 0; i < len(boundaries)-1; i++ {
 			start := boundaries[i]
 			end := boundaries[i+1]
