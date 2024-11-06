@@ -13,6 +13,8 @@ func  (f *LanguageFactory) CreateLanguage(language string) ILanguage {
 		return NewAmharic()
 	case "ml":
 		return NewMalayalam()
+	case "es":
+		return NewSpanish()
 	}
 
 	if LANGUAGE_FALLBACKS[language] != nil {
