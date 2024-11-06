@@ -1,9 +1,5 @@
 package languages
 
-import (
-	"strings"
-)
-
 type Malayalam struct {
 	Language
 }
@@ -50,10 +46,6 @@ var MlAbbreviations = []string{
 	"ഇസഡ്",
 }
 
-func (l *Malayalam) IsAbbreviation(word, tail, separator string) bool {
-	_, exists := l.Abbreviations[strings.ToLower(word)]
-	return exists
-}
 
 func NewMalayalam() *Malayalam {
 	language := NewLanguage()

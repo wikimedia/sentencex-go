@@ -7,6 +7,10 @@ func  (f *LanguageFactory) CreateLanguage(language string) ILanguage {
 	switch language {
 	case "en":
 		return NewEnglish()
+	case "am":
+		return NewAmharic()
+	case "ar":
+		return NewAmharic()
 	case "ml":
 		return NewMalayalam()
 	}

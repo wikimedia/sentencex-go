@@ -37,13 +37,13 @@ var mltests = []struct {
 
 func TestMalayalam(t *testing.T) {
 	factory := languages.LanguageFactory{}
-	english := factory.CreateLanguage("ml")
+	language := factory.CreateLanguage("ml")
 	for _, tt := range mltests {
 		t.Run(tt.text, func(t *testing.T) {
 			if tt.skip {
 				t.Skip()
 			}
-			segmented := english.Segment(tt.text)
+			segmented := language.Segment(tt.text)
 			if len(segmented) != len(tt.sentences) {
 				t.Errorf("Expected %d sentences, got %d", len(tt.sentences), len(segmented))
 				t.Error(segmented)
