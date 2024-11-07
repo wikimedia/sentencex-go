@@ -5,6 +5,8 @@ type LanguageFactory struct{}
 func  (f *LanguageFactory) CreateLanguage(language string) ILanguage {
 
 	switch language {
+	case "de":
+		return NewDeutsch()
 	case "en":
 		return NewEnglish()
 	case "am":

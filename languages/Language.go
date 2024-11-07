@@ -6,19 +6,26 @@ import (
 	"strings"
 )
 
+type IWordContinuityHelper interface {
+	ContinueInNextWord(textAfterBoundary string) bool
+	GetLastWord(text string) string
+}
+
 type Language struct {
-	Language                  string
-	QuotePairs                map[string]string
-	GlobalSentenceBoundaryReg *regexp.Regexp
-	QuotesRegex               *regexp.Regexp
-	ParensRegex               *regexp.Regexp
-	EmailRegex                *regexp.Regexp
-	NumberedReferenceRegex    *regexp.Regexp
-	SpaceAfterSeperator       *regexp.Regexp
-	SentenceBreakRegex        *regexp.Regexp
-	Abbreviations             map[string]struct{}
-	AbbreviationChar          string
-	ExclamationWords          map[string]struct{}
+	Language                   string
+	QuotePairs                 map[string]string
+	GlobalSentenceBoundaryReg  *regexp.Regexp
+	QuotesRegex                *regexp.Regexp
+	ParensRegex                *regexp.Regexp
+	EmailRegex                 *regexp.Regexp
+	NumberedReferenceRegex     *regexp.Regexp
+	SpaceAfterSeperator        *regexp.Regexp
+	SentenceBreakRegex         *regexp.Regexp
+	Abbreviations              map[string]struct{}
+	AbbreviationChar           string
+	ExclamationWords           map[string]struct{}
+	IsPunctuationBetweenQuotes bool
+	WordContinuityHelper       IWordContinuityHelper
 }
 
 func NewLanguage() *Language {
@@ -45,6 +52,7 @@ func NewLanguage() *Language {
 	if globalSentenceBoundaryReg == nil {
 		panic("globalSentenceBoundaryReg is nil")
 	}
+	//quotes_regx_str = r"|".join([f"{left}(\n|.)*?{right}" for left, right in quote_pairs.items()])
 	quotesRegxStr := strings.Join(func() []string {
 		var pairs []string
 		for left, right := range quotePairs {
@@ -52,25 +60,31 @@ func NewLanguage() *Language {
 		}
 		return pairs
 	}(), "|")
-	quotesRegex := regexp.MustCompile(quotesRegxStr)
+	fmt.Println(quotesRegxStr)
+	quotesRegex, err := regexp.Compile(quotesRegxStr)
+	if err != nil {
+		fmt.Println("Error compiling regular expression:", err)
+
+	}
 	parensRegex := regexp.MustCompile(`\([^)]+\)`)
 	emailRegex := regexp.MustCompile(`[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}`)
 	numberedReferenceRegex := regexp.MustCompile(`^(\[\d+])+`)
 	spaceAfterSeperator := regexp.MustCompile(`^\s+`)
 
 	return &Language{
-		Language:                  "base",
-		QuotePairs:                quotePairs,
-		GlobalSentenceBoundaryReg: globalSentenceBoundaryReg,
-		QuotesRegex:               quotesRegex,
-		ParensRegex:               parensRegex,
-		EmailRegex:                emailRegex,
-		NumberedReferenceRegex:    numberedReferenceRegex,
-		SentenceBreakRegex:        globalSentenceBoundaryReg,
-		Abbreviations:             make(map[string]struct{}),
-		AbbreviationChar:          ".",
-		ExclamationWords:          exclamationWords,
-		SpaceAfterSeperator:       spaceAfterSeperator,
+		Language:                   "base",
+		QuotePairs:                 quotePairs,
+		GlobalSentenceBoundaryReg:  globalSentenceBoundaryReg,
+		QuotesRegex:                quotesRegex,
+		ParensRegex:                parensRegex,
+		EmailRegex:                 emailRegex,
+		NumberedReferenceRegex:     numberedReferenceRegex,
+		SentenceBreakRegex:         globalSentenceBoundaryReg,
+		Abbreviations:              make(map[string]struct{}),
+		AbbreviationChar:           ".",
+		ExclamationWords:           exclamationWords,
+		SpaceAfterSeperator:        spaceAfterSeperator,
+		IsPunctuationBetweenQuotes: false,
 	}
 }
 
@@ -99,6 +113,9 @@ func (l *Language) IsExclamationWord(head, tail string) bool {
 }
 
 func (l *Language) GetLastWord(text string) string {
+	if l.WordContinuityHelper != nil {
+		return l.WordContinuityHelper.GetLastWord(text)
+	}
 	words := regexp.MustCompile(`[\s\.]+`).Split(text, -1)
 	return words[len(words)-1]
 }
@@ -132,12 +149,17 @@ func (l *Language) FindBoundary(text string, start int, end int) int {
 }
 
 func (l *Language) ContinueInNextWord(textAfterBoundary string) bool {
+	if l.WordContinuityHelper != nil {
+		return l.WordContinuityHelper.ContinueInNextWord(textAfterBoundary)
+	}
+
 	return regexp.MustCompile(`^[0-9a-z]`).MatchString(textAfterBoundary)
 }
 
 func (l *Language) GetSkippableRanges(text string) [][2]int {
 	var skippableRanges [][2]int
 	for _, match := range l.QuotesRegex.FindAllStringIndex(text, -1) {
+		fmt.Println(match)
 		skippableRanges = append(skippableRanges, [2]int{match[0], match[1]})
 	}
 	for _, match := range l.ParensRegex.FindAllStringIndex(text, -1) {
@@ -146,6 +168,7 @@ func (l *Language) GetSkippableRanges(text string) [][2]int {
 	for _, match := range l.EmailRegex.FindAllStringIndex(text, -1) {
 		skippableRanges = append(skippableRanges, [2]int{match[0], match[1]})
 	}
+
 	return skippableRanges
 }
 
@@ -176,14 +199,23 @@ func (l *Language) Segment(text string) []string {
 
 			// Check if the boundary is inside a skippable range (quote, parentheses, or email).
 			inRange := false
+
 			for _, rng := range skippableRanges {
-				if boundary > rng[0] && boundary < rng[1] {
-					if boundary+1 == rng[1] && l.IsPunctuationBetweenQuotes() {
+				// Convert the rng to rune slice to avoid issues with multi-byte characters.
+
+				rangeStart := len([]rune(paragraph[:rng[0]]))
+				rangeEnd := len([]rune(paragraph[:rng[1]]))
+
+				boundaryEnd := len([]rune(paragraph[:boundary]))
+
+				if boundaryEnd > rangeStart && boundaryEnd < rangeEnd {
+					if boundaryEnd+1 == rangeEnd && l.IsPunctuationBetweenQuotes {
 						boundary = rng[1]
 						inRange = false
 					} else {
 						inRange = true
 					}
+
 					break
 				}
 			}
@@ -215,10 +247,6 @@ func (l *Language) Segment(text string) []string {
 	}
 
 	return sentences
-}
-
-func (l *Language) IsPunctuationBetweenQuotes() bool {
-	return false
 }
 
 // NewSetFromArray creates a new set from a slice of any comparable type

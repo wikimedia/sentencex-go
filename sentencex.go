@@ -1,4 +1,4 @@
-package sentencex
+package main
 
 import (
 	"bufio"
