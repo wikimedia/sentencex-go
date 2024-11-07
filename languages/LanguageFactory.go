@@ -21,6 +21,8 @@ func  (f *LanguageFactory) CreateLanguage(language string) ILanguage {
 		return NewFinnish()
 	case "fr":
 		return NewFrench()
+	case "hi":
+		return NewHindi()
 }
 
 	if LANGUAGE_FALLBACKS[language] != nil {
