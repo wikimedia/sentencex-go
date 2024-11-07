@@ -1,7 +1,6 @@
 package languages
 
 import (
-	"fmt"
 	"regexp"
 	"strings"
 )
@@ -182,7 +181,6 @@ type DeWordContinuityHelper struct {
 
 
 func (helper *DeWordContinuityHelper) ContinueInNextWord(textAfterBoundary string) bool {
-	fmt.Println(textAfterBoundary)
 	re := regexp.MustCompile(`^\W*[0-9a-z]`)
 	if re.MatchString(textAfterBoundary) {
 		return true
