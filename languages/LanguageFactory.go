@@ -23,6 +23,8 @@ func  (f *LanguageFactory) CreateLanguage(language string) ILanguage {
 		return NewFrench()
 	case "hi":
 		return NewHindi()
+	case "it":
+		return NewItalian()
 	case "ru":
 		return NewRussian()
 	case "ta":

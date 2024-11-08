@@ -22,7 +22,7 @@ func LanguageTest(t *testing.T, languageCode string, tests []struct {
 			segmented := language.Segment(tt.text)
 			if len(segmented) != len(tt.sentences) {
 				t.Errorf("Expected %d sentences, got %d", len(tt.sentences), len(segmented))
-				t.Error(segmented)
+				t.Errorf("%#v", strings.Join(segmented, "❚"))
 			} else {
 				for i, actual_sentence := range segmented {
 					if strings.TrimSpace(actual_sentence) != tt.sentences[i] && actual_sentence != tt.sentences[i]{
