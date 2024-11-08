@@ -60,7 +60,7 @@ func NewLanguage() *Language {
 		}
 		return pairs
 	}(), "|")
-	fmt.Println(quotesRegxStr)
+
 	quotesRegex, err := regexp.Compile(quotesRegxStr)
 	if err != nil {
 		fmt.Println("Error compiling regular expression:", err)
