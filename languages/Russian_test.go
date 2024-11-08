@@ -4,11 +4,7 @@ import (
 	"testing"
 )
 
-var rutests = []struct {
-	text      string
-	sentences []string
-	skip      bool
-}{
+var rutests = []SegmentationTest{
 	{
 		text: "Объем составляет 5 куб.м.",
 		sentences: []string{

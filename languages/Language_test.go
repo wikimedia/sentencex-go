@@ -7,11 +7,14 @@ import (
 	"github.com/wikimedia/sentencex-go/languages"
 )
 
-func LanguageTest(t *testing.T, languageCode string, tests []struct {
+type SegmentationTest struct {
 	text      string
 	sentences []string
 	skip      bool
-}) {
+}
+
+
+func LanguageTest(t *testing.T, languageCode string, tests []SegmentationTest) {
 	factory := languages.LanguageFactory{}
 	language := factory.CreateLanguage(languageCode)
 	for _, tt := range tests {

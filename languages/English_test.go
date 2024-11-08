@@ -4,11 +4,7 @@ import (
 	"testing"
 )
 
-var tests = []struct {
-	text      string
-	sentences []string
-	skip      bool
-}{
+var tests = []SegmentationTest{
 	{
 		text:      "This is Dr. Watson",
 		sentences: []string{"This is Dr. Watson"}},

@@ -4,11 +4,7 @@ import (
 	"testing"
 )
 
-var fitests = []struct {
-	text      string
-	sentences []string
-	skip      bool
-}{
+var fitests = []SegmentationTest{
 	{
 		text:      "Se julkaistiin singlenä 7. heinäkuuta 1997, ja se nousi listaykköseksi yhtyeen kotimaassa Britanniassa sekä Irlannissa, Suomessa, Espanjassa ja Kanadassa",
 		sentences: []string{"Se julkaistiin singlenä 7. heinäkuuta 1997, ja se nousi listaykköseksi yhtyeen kotimaassa Britanniassa sekä Irlannissa, Suomessa, Espanjassa ja Kanadassa"},

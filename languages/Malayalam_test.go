@@ -4,11 +4,7 @@ import (
 	"testing"
 )
 
-var mltests = []struct {
-	text      string
-	sentences []string
-	skip      bool
-}{
+var mltests =[]SegmentationTest{
 
 	{
 		text:      "Roses Are Red. Violets Are Blue",

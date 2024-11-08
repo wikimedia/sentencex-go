@@ -4,11 +4,7 @@ import (
 	"testing"
 )
 
-var estests = []struct {
-	text      string
-	sentences []string
-	skip      bool
-}{
+var estests = []SegmentationTest{
 	{
 		text:      "¿Cómo está hoy? Espero que muy bien.",
 		sentences: []string{"¿Cómo está hoy?", "Espero que muy bien."},

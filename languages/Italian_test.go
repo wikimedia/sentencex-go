@@ -2,11 +2,9 @@ package languages_test
 
 import "testing"
 
-var ittests = []struct {
-	text      string
-	sentences []string
-	skip      bool
-}{
+
+
+var ittests = []SegmentationTest{
 	{
 		text:      "Salve Sig.ra Mengoni! Come sta oggi?",
 		sentences: []string{"Salve Sig.ra Mengoni!", "Come sta oggi?"},

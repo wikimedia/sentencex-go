@@ -4,12 +4,7 @@ import (
 	"testing"
 )
 
-var artests = []struct {
-	text      string
-	sentences []string
-	skip      bool
-}{
-
+var artests = []SegmentationTest{
 	{
 		text:      "እንደምን አለህ፧መልካም ቀን ይሁንልህ።እባክሽ ያልሽዉን ድገሚልኝ።",
 		sentences: []string{"እንደምን አለህ፧", "መልካም ቀን ይሁንልህ።", "እባክሽ ያልሽዉን ድገሚልኝ።"},

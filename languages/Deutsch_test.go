@@ -4,11 +4,7 @@ import (
 	"testing"
 )
 
-var detests = []struct {
-    text      string
-    sentences []string
-    skip      bool
-}{
+var detests =[]SegmentationTest{
     {
         text:      "„Ich habe heute keine Zeit“, sagte die Frau und flüsterte leise: „Und auch keine Lust.“ Wir haben 1.000.000 Euro.",
         sentences: []string{"„Ich habe heute keine Zeit“, sagte die Frau und flüsterte leise: „Und auch keine Lust.“", "Wir haben 1.000.000 Euro."},

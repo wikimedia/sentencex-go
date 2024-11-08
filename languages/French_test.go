@@ -4,12 +4,7 @@ import (
 	"testing"
 )
 
-var frtests = []struct {
-        text      string
-        sentences []string
-        skip      bool
-}{
-
+var frtests = []SegmentationTest{
         {
                 text: "Après avoir été l'un des acteurs du projet génome humain, le Genoscope met aujourd'hui le cap vers la génomique environnementale. L'exploitation des données de séquences, prolongée par l'identification expérimentale des fonctions biologiques, notamment dans le domaine de la biocatalyse, ouvrent des perspectives de développements en biotechnologie industrielle.",
                 sentences: []string{

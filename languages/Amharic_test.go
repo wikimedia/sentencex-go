@@ -4,11 +4,7 @@ import (
 	"testing"
 )
 
-var amtests = []struct {
-	text      string
-	sentences []string
-	skip      bool
-}{
+var amtests = []SegmentationTest{
 
 	{
 		text:       "እንደምን አለህ፧መልካም ቀን ይሁንልህ።እባክሽ ያልሽዉን ድገሚልኝ።",
