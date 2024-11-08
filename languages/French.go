@@ -106,8 +106,8 @@ var FrenchAbbreviations = []string{
 
 func NewFrench() *French {
 	language := NewLanguage()
-	language.Abbreviations = NewSetFromArray(append(FrenchAbbreviations, EnAbbreviations...))
-	language.IsPunctuationBetweenQuotes = true
+	language.Abbreviations = NewSetFromArray(FrenchAbbreviations)
+	language.IsPunctuationBetweenQuotes = false
 	return &French{
 		Language: *language,
 	}
