@@ -4,7 +4,6 @@ type Gujarati struct {
 	Language
 }
 
-
 var GujaratiAbbreviations = []string{
 	"એ",
 	"બી",

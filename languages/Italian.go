@@ -9,7 +9,6 @@ type Italian struct {
 	Language
 }
 
-
 var ItalianAbbreviations = []string{
 	"°c",
 	"°f",
@@ -2244,11 +2243,9 @@ var ItalianAbbreviations = []string{
 type ItWordContinuityHelper struct {
 }
 
-
 func (helper *ItWordContinuityHelper) ContinueInNextWord(textAfterBoundary string) bool {
 	return regexp.MustCompile(`^[0-9a-z]`).MatchString(textAfterBoundary)
 }
-
 
 func (helper *ItWordContinuityHelper) GetLastWord(text string) string {
 	words := regexp.MustCompile(`[\s\.]+`).Split(text, -1)

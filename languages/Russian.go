@@ -8,7 +8,6 @@ type Russian struct {
 	Language
 }
 
-
 var RussianAbbreviations = []string{
 	"y.e",
 	"y",
@@ -81,21 +80,17 @@ var RussianAbbreviations = []string{
 	"ч",
 }
 
-
 type RuWordContinuityHelper struct {
 }
-
 
 func (helper *RuWordContinuityHelper) ContinueInNextWord(textAfterBoundary string) bool {
 	return regexp.MustCompile(`^[0-9a-zа-я]`).MatchString(textAfterBoundary)
 }
 
-
 func (helper *RuWordContinuityHelper) GetLastWord(text string) string {
 	words := regexp.MustCompile(`[\s\.]+`).Split(text, -1)
 	return words[len(words)-1]
 }
-
 
 func NewRussian() *Russian {
 	language := NewLanguage()

@@ -260,10 +260,9 @@ var SpanishAbbreviations = []string{
 	"yuxta",
 }
 
-
 func NewSpanish() *Spanish {
 	language := NewLanguage()
-	language. Abbreviations = NewSetFromArray(append(SpanishAbbreviations, EnAbbreviations...))
+	language.Abbreviations = NewSetFromArray(append(SpanishAbbreviations, EnAbbreviations...))
 	return &Spanish{
 		Language: *language,
 	}

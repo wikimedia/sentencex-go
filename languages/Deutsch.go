@@ -179,7 +179,6 @@ var DeutschAbbreviations = []string{
 type DeWordContinuityHelper struct {
 }
 
-
 func (helper *DeWordContinuityHelper) ContinueInNextWord(textAfterBoundary string) bool {
 	re := regexp.MustCompile(`^\W*[0-9a-z]`)
 	if re.MatchString(textAfterBoundary) {
@@ -207,7 +206,6 @@ func (helper *DeWordContinuityHelper) ContinueInNextWord(textAfterBoundary strin
 
 	return false
 }
-
 
 func (helper *DeWordContinuityHelper) GetLastWord(text string) string {
 	words := regexp.MustCompile(`[\s\.]+`).Split(text, -1)

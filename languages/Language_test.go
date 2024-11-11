@@ -13,7 +13,6 @@ type SegmentationTest struct {
 	skip      bool
 }
 
-
 func LanguageTest(t *testing.T, languageCode string, tests []SegmentationTest) {
 	factory := languages.LanguageFactory{}
 	language := factory.CreateLanguage(languageCode)
@@ -28,7 +27,7 @@ func LanguageTest(t *testing.T, languageCode string, tests []SegmentationTest) {
 				t.Errorf("%#v", strings.Join(segmented, "❚"))
 			} else {
 				for i, actual_sentence := range segmented {
-					if strings.TrimSpace(actual_sentence) != tt.sentences[i] && actual_sentence != tt.sentences[i]{
+					if strings.TrimSpace(actual_sentence) != tt.sentences[i] && actual_sentence != tt.sentences[i] {
 						t.Errorf("Expected '%s', got '%s'", tt.sentences[i], actual_sentence)
 					}
 				}

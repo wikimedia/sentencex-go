@@ -2,8 +2,6 @@ package languages_test
 
 import "testing"
 
-
-
 var ittests = []SegmentationTest{
 	{
 		text:      "Salve Sig.ra Mengoni! Come sta oggi?",
@@ -147,7 +145,6 @@ var ittests = []SegmentationTest{
 		sentences: []string{"La macchina viaggiava a 100 km/h."},
 	},
 }
-
 
 func TestItalian(t *testing.T) {
 	LanguageTest(t, "it", ittests)

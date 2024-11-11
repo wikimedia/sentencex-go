@@ -4,7 +4,6 @@ type Bulgarian struct {
 	Language
 }
 
-
 var BulgarianAbbreviations = []string{
 	"p.s",
 	"акад",

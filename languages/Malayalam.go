@@ -46,10 +46,9 @@ var MlAbbreviations = []string{
 	"ഇസഡ്",
 }
 
-
 func NewMalayalam() *Malayalam {
 	language := NewLanguage()
-	language. Abbreviations = NewSetFromArray(append(MlAbbreviations, EnAbbreviations...))
+	language.Abbreviations = NewSetFromArray(append(MlAbbreviations, EnAbbreviations...))
 	return &Malayalam{
 		Language: *language,
 	}

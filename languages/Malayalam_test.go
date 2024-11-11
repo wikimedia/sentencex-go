@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-var mltests =[]SegmentationTest{
+var mltests = []SegmentationTest{
 
 	{
 		text:      "Roses Are Red. Violets Are Blue",

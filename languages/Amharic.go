@@ -9,7 +9,6 @@ var AmharicAbbreviations = []string{
 	"ም",
 }
 
-
 func NewAmharic() *Amharic {
 	language := NewLanguage()
 	language.Abbreviations = NewSetFromArray(append(AmharicAbbreviations, EnAbbreviations...))

@@ -2,7 +2,7 @@ package languages
 
 type LanguageFactory struct{}
 
-func  (f *LanguageFactory) CreateLanguage(language string) ILanguage {
+func (f *LanguageFactory) CreateLanguage(language string) ILanguage {
 
 	switch language {
 	case "am":
@@ -33,13 +33,17 @@ func  (f *LanguageFactory) CreateLanguage(language string) ILanguage {
 		return NewArmenian()
 	case "it":
 		return NewItalian()
+	case "kk":
+		return NewKazakh()
+	case "kn":
+		return NewKannada()
 	case "ml":
 		return NewMalayalam()
 	case "ru":
 		return NewRussian()
 	case "ta":
 		return NewTamil()
-}
+	}
 
 	if LANGUAGE_FALLBACKS[language] != nil {
 		for _, fallback := range LANGUAGE_FALLBACKS[language] {

@@ -47,17 +47,14 @@ var TamilAbbreviations = []string{
 	"எக்ஸ்",
 	"வை",
 	"ஜெட்",
-
 }
-
-
 
 func NewTamil() *Tamil {
 	language := NewLanguage()
 	TamilAbbreviations = append(TamilAbbreviations, vowels...)
 	TamilAbbreviations = append(TamilAbbreviations, consonants...)
 	TamilAbbreviations = append(TamilAbbreviations, consonantVowels...)
-	language.Abbreviations = NewSetFromArray(append(TamilAbbreviations, EnAbbreviations...  ))
+	language.Abbreviations = NewSetFromArray(append(TamilAbbreviations, EnAbbreviations...))
 	language.IsPunctuationBetweenQuotes = true
 
 	return &Tamil{

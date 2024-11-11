@@ -4,7 +4,6 @@ type Hindi struct {
 	Language
 }
 
-
 var HindiAbbreviations = []string{
 	"ए",
 	"बी",

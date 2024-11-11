@@ -16,12 +16,12 @@ var datests = []SegmentationTest{
 	{
 		text:      "Lad os spørge Jane og co. De burde vide det.",
 		sentences: []string{"Lad os spørge Jane og co.", "De burde vide det."},
-		skip: 	true,
+		skip:      true,
 	},
 	{
 		text:      "De lukkede aftalen med Pitt, Briggs & Co. Det lukkede i går.",
 		sentences: []string{"De lukkede aftalen med Pitt, Briggs & Co.", "Det lukkede i går."},
-		skip: 	true,
+		skip:      true,
 	},
 	{
 		text:      "De holdt Skt. Hans i byen.",

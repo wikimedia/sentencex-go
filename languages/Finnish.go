@@ -159,7 +159,6 @@ var FinnishAbbreviations = []string{
 type FiWordContinuityHelper struct {
 }
 
-
 func (helper *FiWordContinuityHelper) ContinueInNextWord(textAfterBoundary string) bool {
 	re := regexp.MustCompile(`^\W*[0-9a-z]`)
 	if re.MatchString(textAfterBoundary) {
@@ -187,7 +186,6 @@ func (helper *FiWordContinuityHelper) ContinueInNextWord(textAfterBoundary strin
 
 	return false
 }
-
 
 func (helper *FiWordContinuityHelper) GetLastWord(text string) string {
 	words := regexp.MustCompile(`[\s\.]+`).Split(text, -1)

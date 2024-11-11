@@ -22,13 +22,11 @@ var ArabicAbbreviations = []string{
 	"م.ب",
 	"م",
 	"ه",
-
 }
-
 
 func NewArabic() *Arabic {
 	language := NewLanguage()
-	language. Abbreviations = NewSetFromArray(append(ArabicAbbreviations, EnAbbreviations...))
+	language.Abbreviations = NewSetFromArray(append(ArabicAbbreviations, EnAbbreviations...))
 	return &Arabic{
 		Language: *language,
 	}

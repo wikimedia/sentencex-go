@@ -8,7 +8,6 @@ type Danish struct {
 	Language
 }
 
-
 var DanishAbbreviations = []string{
 	"adm",
 	"adr",
@@ -486,10 +485,8 @@ var DanishAbbreviations = []string{
 	"zool",
 }
 
-
 type DaWordContinuityHelper struct {
 }
-
 
 func (helper *DaWordContinuityHelper) ContinueInNextWord(textAfterBoundary string) bool {
 	re := regexp.MustCompile(`^\W*[0-9a-z]`)

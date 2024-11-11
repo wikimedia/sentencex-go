@@ -60,7 +60,6 @@ var artests = []SegmentationTest{
 	},
 }
 
-
 func TestArabic(t *testing.T) {
 	LanguageTest(t, "ar", artests)
 }
