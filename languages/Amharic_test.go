@@ -5,7 +5,6 @@ import (
 )
 
 var amtests = []SegmentationTest{
-
 	{
 		text:       "እንደምን አለህ፧መልካም ቀን ይሁንልህ።እባክሽ ያልሽዉን ድገሚልኝ።",
 		sentences: []string{"እንደምን አለህ፧", "መልካም ቀን ይሁንልህ።", "እባክሽ ያልሽዉን ድገሚልኝ።"},

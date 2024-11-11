@@ -2255,6 +2255,7 @@ func (helper *ItWordContinuityHelper) GetLastWord(text string) string {
 	if len(words) == 0 {
 		return ""
 	}
+
 	lastWord := words[len(words)-1]
 	parts := strings.Split(lastWord, "l'")
 	return parts[len(parts)-1]
