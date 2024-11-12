@@ -39,8 +39,14 @@ func (f *LanguageFactory) CreateLanguage(language string) ILanguage {
 		return NewKannada()
 	case "ml":
 		return NewMalayalam()
+	case "my":
+		return NewBurmese()
 	case "mr":
 		return NewHindi()
+	case "nl":
+		return NewDutch()
+	case "pa":
+		return NewPunjabi()
 	case "pl":
 		return NewPolish()
 	case "ru":
