@@ -53,6 +53,8 @@ func (f *LanguageFactory) CreateLanguage(language string) ILanguage {
 		return NewRussian()
 	case "ta":
 		return NewTamil()
+	case "sk":
+		return NewSlovak()
 	}
 
 	if LANGUAGE_FALLBACKS[language] != nil {

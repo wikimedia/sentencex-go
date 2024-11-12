@@ -28,6 +28,8 @@ type Language struct {
 	WordContinuityHelper       IWordContinuityHelper
 }
 
+var roman_numerals = "i ii iii iv v vi vii viii ix x xi xii xiii xiv x xi xii xiii xv xvi xvii xviii xix xx"
+
 func NewLanguage() *Language {
 	exclamationWords := map[string]struct{}{
 		"!Xũ": {}, "!Kung": {}, "ǃʼOǃKung": {}, "!Xuun": {}, "!Kung-Ekoka": {}, "ǃHu": {}, "ǃKhung": {}, "ǃKu": {}, "ǃung": {}, "ǃXo": {}, "ǃXû": {}, "ǃXung": {}, "ǃXũ": {}, "!Xun": {}, "Yahoo!": {}, "Y!J": {}, "Yum!": {},

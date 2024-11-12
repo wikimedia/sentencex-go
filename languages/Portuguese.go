@@ -6,8 +6,6 @@ type Portuguese struct {
 	Language
 }
 
-var roman_numerals = "i ii iii iv v vi vii viii ix x xi xii xiii xiv x xi xii xiii xv xvi xvii xviii xix xx"
-
 var PortugueseAbbreviations = []string{
 	"Adj",
 	"Adm",
