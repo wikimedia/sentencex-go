@@ -161,7 +161,6 @@ func (l *Language) ContinueInNextWord(textAfterBoundary string) bool {
 func (l *Language) GetSkippableRanges(text string) [][2]int {
 	var skippableRanges [][2]int
 	for _, match := range l.QuotesRegex.FindAllStringIndex(text, -1) {
-		fmt.Println(match)
 		skippableRanges = append(skippableRanges, [2]int{match[0], match[1]})
 	}
 	for _, match := range l.ParensRegex.FindAllStringIndex(text, -1) {
