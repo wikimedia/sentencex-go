@@ -80,9 +80,10 @@ The following libraries are used for benchmarking:
 
 | Tokenizer Library               |  English Golden Rule Set score    | Speed(Avg over 100 runs) in seconds |
 |--------------------------|------------|-----------|
-| sentencex_segment |    74.36  |     0.93 |
+| sentencex(go) |    74.36  |      **0.1357** |
+| sentencex(python) |    74.36  |     0.93 |
 | mwtokenizer_tokenize      |    30.77  |    1.54  |
-| blingfire_tokenize        |    89.74  |    **0.27**  |
+| blingfire_tokenize        |    89.74  |   0.27  |
 | nltk_tokenize             |    66.67  |    1.86  |
 | pysbd_tokenize            |**97.44**  |    10.57 |
 | spacy_tokenize            |    61.54  |     2.45 |
